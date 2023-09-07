@@ -96,7 +96,7 @@ const loginUsers = async(req, res) => {
             throw error
         }
         //유저가 가입한적이 없을때
-        if(!users.email){
+        if(!users){
             const error = new Error("EMAIL_DOES_NOT_EXIST_IN_DATABASE")
             error.statusCode=400
             throw error
@@ -116,9 +116,10 @@ const loginUsers = async(req, res) => {
        return res.status(200).json( {  "message" : "LOGIN_SUCCESS",
        "accessToken" : token
        })
-    } catch (error) { return res.status(400).json( { "message":error.message
+    } catch (error) { 
+        console.log(error)
+        return res.status(400).json( { "message":error.message
       })
-      console.log(error)
     }
   }
 
